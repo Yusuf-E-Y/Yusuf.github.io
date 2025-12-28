@@ -1,0 +1,430 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="Assests/Berserk-modified.png" type="image/png">
+    <title>Portfolyo sitesi</title>
+</head>
+
+<body>
+    <header class="header">
+        <a href="#" class="logo">
+            <img src="Assests/Berserk-modified.png" alt="Logo" class="nav-favicon">
+        </a>
+
+        <nav class="navbar">
+            <a href="#main">Ana sayfa</a>
+            <a href="#projects">Projeler</a>
+            <a href="#source">Kaynaklar</a>
+            <a href="#Cer">Sertifikalar</a>
+        </nav>
+    </header>
+    <section class="home" id="main">
+        <div class="home-img">
+            <img src="Assests/Berserk-modified.png" alt="">
+        </div>
+        <div class="home-content">
+            <h1>Merhaba Ben Yusuf</h1>
+            <h3 class="typing-text"></h3>
+            <p>Lise öğrencisiyim ve yazılımla ilgileniyorum</p>
+
+            <div class="social-icons">
+                <a href="https://leetcode.com/u/yusuf-e-y/" target="_blank"><img src="Assests/leetcode-icon.webp" alt="leetcode"
+                        style="width:33px; height:auto;"></a>
+                <a href="https://github.com/Yusuf-E-Y" target="_blank"><img src="Assests/Github-icon.webp" alt="Github"
+                        style="width:33px; height:auto;"></a>
+                <a href="https://www.kaggle.com/" target="_blank"><img src="Assests/kaggle-icon.webp" alt="Kaggle"
+                        style="width:33px; height:auto;"></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects" id="projects">
+        <h2 class="heading">Projelerim</h2>
+
+        <div class="projects-container">
+            <div class="project-box">
+                <img src="Assests/Currency.png" alt="Döviz">
+                <div class="project-layer">
+                    <h4>API Döviz Sistemi</h4>
+                    <p>Döviz kurlarını takip eden API tabanlı sistem.</p>
+                    <a href="https://github.com/Yusuf-E-Y/API-currency-tracking" target="_blank">Kodları Gör</a>
+                </div>
+            </div>
+
+            <div class="project-box">
+                <img src="Assests/photo.png" alt="Password Generator">
+                <div class="project-layer">
+                    <h4>Şifre Oluşturucu</h4>
+                    <p>Güvenli ve rastgele şifreler oluşturan araç.</p>
+                    <a href="https://github.com/Yusuf-E-Y/Password_generator" target="_blank">Kodları Gör</a>
+                </div>
+            </div>
+
+            <div class="project-box">
+                <img src="Assests/qlearning.png" alt="Q-learning">
+                <div class="project-layer">
+                    <h4>Q-learning</h4>
+                    <p>Pekiştirmeli öğrenme algoritması uygulaması.</p>
+                    <a href="https://github.com/Yusuf-E-Y/Basic-Q_learning" target="_blank">Kodları Gör</a>
+                </div>
+            </div>
+
+            <div class="project-box">
+                <img src="Assests/Game-console.jpg" alt="Console Price">
+                <div class="project-layer">
+                    <h4>Fiyat Tahmini</h4>
+                    <p>Oyun konsolları için nadirlik ve fiyat tahmin modeli.</p>
+                    <a href="https://github.com/Yusuf-E-Y/Rarity-predict" target="_blank">Kodları Gör</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="source" id="source">
+        <h2 class="heading">Kaynak Kodları</h2>
+        <div class="content-container">
+            <div class="content-box">
+                <iframe src="https://yusuf-e-y.github.io/kaynak.html" frameborder="0"></iframe>
+                <!-- Removing the text link as the iframe likely contains the content, or placing it below nicely -->
+                <div class="btn-container">
+                    <a href="https://github.com/Yusuf-E-Y/Profile-site" target="_blank" class="btn">Kodları Görün</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="Cer" id="Cer">
+        <h2 class="heading">Sertifikalar</h2>
+        <div class="content-container">
+            <div class="content-box">
+                <img src="Assests/Beginner Challenges-1.png" alt="Sertifika">
+            </div>
+        </div>
+    </section>
+
+    <canvas id="matrix" style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1;"></canvas>
+
+    <script>
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function draw() {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'; // eski karakterleri silme efekti
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = '#0F0'; // yeşil kodlar
+        ctx.font = fontSize + 'px monospace';
+
+        for (let i = 0; i < drops.length; i++) {
+            const text = letters[Math.floor(Math.random() * letters.length)];
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+            }
+            drops[i]++;
+        }
+        }
+
+        setInterval(draw, 50);
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #020202;
+            color: #fff;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 10%;
+            background: transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            /* Align to top */
+            z-index: 100;
+        }
+
+        .nav-favicon {
+            width: 50px;
+            /* Adjust size as needed */
+            height: auto;
+            cursor: pointer;
+        }
+
+        .navbar {
+            display: flex;
+            margin-top: 15px;
+            /* Push navbar slightly down */
+        }
+
+        .navbar a {
+            display: inline-block;
+            font-size: 18px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 35px;
+            transition: .3s;
+        }
+
+        .navbar a:hover,
+        .navbar a.active {
+            color: #00abf0;
+            text-shadow: 0 0 10px #00abf0;
+        }
+
+        /* Basic styling for home section to make it look decent */
+        .home {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 70px 10% 0;
+        }
+
+        .home-content {
+            max-width: 600px;
+        }
+
+        .home-content h1 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .home-content h3 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #00abf0;
+        }
+
+        .home-content p {
+            font-size: 16px;
+            margin: 20px 0 40px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: 2px solid #00abf0;
+            border-radius: 50%;
+            font-size: 20px;
+            color: #00abf0;
+            text-decoration: none;
+            margin: 30px 15px 30px 0;
+            transition: .5s ease;
+        }
+
+        .social-icons a:hover {
+            background: #00abf0;
+            color: #1f242d;
+            box-shadow: 0 0 20px #00abf0;
+        }
+
+        .home-img img {
+            width: 35vw;
+            animation: floatImage 4s ease-in-out infinite;
+        }
+
+        @keyframes floatImage {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-24px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Projects Section Styling */
+        .projects {
+            padding: 80px 10%;
+            background: #020202;
+        }
+
+        .heading {
+            text-align: center;
+            font-size: 4.5rem;
+            margin-bottom: 50px;
+        }
+
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .project-box {
+            position: relative;
+            border-radius: 2rem;
+            box-shadow: 0 0 1rem #00abf0;
+            overflow: hidden;
+            display: flex;
+            height: 300px;
+            /* Fixed height for uniformity */
+        }
+
+        .project-box img {
+            width: 100%;
+            height: 100%;
+            /* Make image fill container */
+            object-fit: cover;
+            transition: .5s ease;
+        }
+
+        .project-box:hover img {
+            transform: scale(1.1);
+        }
+
+        .project-layer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, .1), #00abf0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 0 4rem;
+            transform: translateY(100%);
+            transition: .5s ease;
+        }
+
+        .project-box:hover .project-layer {
+            transform: translateY(0);
+        }
+
+        .project-layer h4 {
+            font-size: 3rem;
+        }
+
+        .project-layer p {
+            font-size: 1.6rem;
+            margin: .3rem 0 1rem;
+        }
+
+        .project-layer a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 5rem;
+            height: 5rem;
+            background: #fff;
+            border-radius: 50%;
+            text-decoration: none;
+            color: #020202;
+            /* Match theme */
+            font-size: 2rem;
+            /* Icon size placeholder */
+            font-weight: bold;
+        }
+
+        /* Content Sections Styling (Source & Certificates) */
+        .source,
+        .certificates {
+            padding: 80px 10%;
+            background: #020202;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .content-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .content-box {
+            background: #1f242d;
+            border-radius: 2rem;
+            box-shadow: 0 0 1rem #00abf0;
+            padding: 20px;
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+            overflow: hidden;
+            transition: .5s ease;
+        }
+
+        .content-box:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 2rem #00abf0;
+        }
+
+        .content-box iframe {
+            width: 100%;
+            height: 400px;
+            border-radius: 1rem;
+        }
+
+        .content-box img {
+            width: 100%;
+            height: auto;
+            border-radius: 1rem;
+        }
+
+        .btn-container {
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.8rem;
+            background: #00abf0;
+            border-radius: 4rem;
+            box-shadow: 0 0 1rem #00abf0;
+            font-size: 1.6rem;
+            color: #020202;
+            letter-spacing: .1rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: .5s ease;
+        }
+
+        .btn:hover {
+            box-shadow: none;
+        }
+        .projects, .source, .Cer {
+            background: transparent; 
+        }
+    </style>
+</body>
+
+</html>
